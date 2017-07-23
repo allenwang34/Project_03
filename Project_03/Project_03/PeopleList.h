@@ -18,7 +18,7 @@ class PeopleList
 
 private:
     struct Node {
-        InfoType m_vale;
+        InfoType m_value;
         std::string m_firstName;
         std::string m_lastName;
         Node *previous;
@@ -26,6 +26,9 @@ private:
     };
     Node *head;
     int listSize;
+    
+    Node *PosOfLastName(const std::string &lastName);
+    Node *PosOfFirstName(const std::string &firstName);
     
     
     
