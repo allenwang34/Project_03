@@ -11,7 +11,7 @@
 
 #include <string>
 
-typedef std::string InfoType;
+typedef int InfoType;
 
 class PeopleList
 {
@@ -36,6 +36,8 @@ private:
 public:
     PeopleList();          // Create an empty In (i.e., one with no InfoType values)
     
+    ~PeopleList();         //When a PeopleList is destroyed, all dynamic memory must be deallocated.
+    
     bool empty() const;    // Return true if the list is empty, otherwise false.
     
     int size() const;      // Return the number of elements in the linked list.
@@ -47,13 +49,13 @@ public:
     // their first names. Otherwise, make no change to the list and return false
     // (indicating that the name is already in the list).
     
-    bool change(const std::string &firstName, const std::string &lastName, const InfoType& value);
+    bool change(const std::string& firstName, const std::string& lastName, const InfoType& value);
     // If the full name is equal to a full name currently in the list, then make that full
     // name no longer map to the value it currently maps to, but instead map to
     // the value of the third parameter; return true in this case.
     // Otherwise, make no change to the list and return false.
     
-    bool addOrChange(std::string firstName, std::string lastName, const InfoType& value);
+    bool addOrChange(const std::string& firstName, const std::string& lastName, const InfoType& value);
     // If full name is equal to a name currently in the list, then make that full name no
     // longer map to the value it currently maps to, but instead map to
     // the value of the third parameter; return true in this case.
@@ -65,7 +67,7 @@ public:
     // full name and value from the list and return true.  Otherwise, make
     // no change to the list and return false.
     
-    bool contains(const std::string firstName, const std::string lastName) const;
+    bool contains(const std::string& firstName, const std::string& lastName) const;
     // Return true if the full name is equal to a full name currently in the list, otherwise
     // false.
     
@@ -83,7 +85,7 @@ public:
     
     void swap(PeopleList& other);
     // Exchange the contents of this list with the other one.
-};
+   };
 
 
 
