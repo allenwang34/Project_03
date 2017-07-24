@@ -284,9 +284,90 @@ void PeopleList::swap(PeopleList& other) {
 
 
 
+bool combine(const PeopleList& m1, const PeopleList& m2, PeopleList& result) {
+	bool isEqualValue = true;
+	
+	for (int j = 0; j < m1.size(); j++) {
+		std::string firstName;
+		std::string lastName;
+		InfoType m1Value;
+		InfoType resultValue;
+		m1.get(j, firstName, lastName, m1Value);
+		if (result.lookup(firstName, lastName, resultValue) && resultValue == m1Value) {
+			;
+		}
+		else if (result.lookup(firstName, lastName, resultValue) && resultValue != m1Value) {
+			result.remove(firstName, lastName);
+			isEqualValue = false;
+		}
+		else {
+			result.add(firstName, lastName, m1Value);
+		}
+	}
 
+	for (int i = 0; i < m2.size();i++){
+		std::string firstName;
+		std::string lastName;
+		InfoType m2Value;
+		InfoType resultValue;
+		m2.get(i, firstName, lastName, m2Value);
+		if (result.lookup(firstName,lastName,resultValue) && resultValue == m2Value ) {
+			;
+		}
+		else if (result.lookup(firstName, lastName, resultValue) && resultValue != m2Value) {
+			result.remove(firstName, lastName);
+			isEqualValue = false;
+		}
+		else {
+			result.add(firstName, lastName, m2Value);
+		}
+	}
+	return isEqualValue;
+}
 
-
+void search(const std::string& fsearch, const std::string& lsearch, const PeopleList& p1, PeopleList& result) {
+	if (fsearch == "*" && lsearch == "*") {
+		for (int i = 0; i < p1.size(); i++) {
+			std::string firstName;
+			std::string lastName;
+			InfoType p1Value;
+			p1.get(i, firstName, lastName, p1Value);
+			result.add(firstName, lastName, p1Value);
+		}
+	}
+	else if (fsearch == "*" && lsearch != "*") {
+		for (int j = 0; j < p1.size(); j++) {
+			std::string firstName;
+			std::string lastName;
+			InfoType p1Value;
+			p1.get(j, firstName, lastName, p1Value);
+			if (lastName==lsearch) {
+				result.add(firstName, lastName, p1Value);
+			}
+		}
+	}
+	else if (fsearch != "*" && lsearch == "*") {
+		for (int j = 0; j < p1.size(); j++) {
+			std::string firstName;
+			std::string lastName;
+			InfoType p1Value;
+			p1.get(j, firstName, lastName, p1Value);
+			if (firstName == fsearch) {
+				result.add(firstName, lastName, p1Value);
+			}
+		}
+	}
+	else {
+		if (p1.contains(fsearch,lsearch)) {
+			InfoType p1Value;
+			p1.lookup(fsearch, lsearch, p1Value);
+			result.add(fsearch, lsearch, p1Value);
+		}
+		else{
+			return;
+		}
+	}
+}
 
 
 

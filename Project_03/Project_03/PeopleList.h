@@ -38,7 +38,7 @@ public:
     
 	PeopleList(const PeopleList &other);    // Copy constructor
 
-	PeopleList& operator=(const PeopleList& other);
+	PeopleList& operator=(const PeopleList& other); //assignment operator overloading
 
     ~PeopleList();         // When a PeopleList is destroyed, all dynamic memory must be deallocated.
     
@@ -90,6 +90,14 @@ public:
     void swap(PeopleList& other);
     // Exchange the contents of this list with the other one.
    };
+
+
+bool combine(const PeopleList& m1, const PeopleList& m2, PeopleList& result);
+
+
+void search(const std::string& fsearch, const std::string& lsearch,
+	const PeopleList& p1, PeopleList& result);
+
 
 
 
