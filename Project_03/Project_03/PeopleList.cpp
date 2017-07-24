@@ -21,6 +21,41 @@ PeopleList::PeopleList()
     head -> m_lastName = "";
 }
 
+PeopleList::PeopleList(const PeopleList &other) {
+	Node *newNode = new Node;
+	head = newNode;
+	head->next = head;
+	head->previous = head;
+	head->m_firstName = "";
+	head->m_lastName = "";
+
+	Node *p = other.head->next;
+	Node *n = head;
+	while (p!=other.head) {
+		Node *newNode = new Node;
+		newNode->next = head;
+		newNode->previous = n;
+		n->next = newNode;
+		head->previous = newNode;
+		newNode->m_value = p->m_value;
+		newNode->m_firstName = p->m_firstName;
+		newNode->m_lastName = p->m_lastName;
+		n = newNode;
+		p = p->next;
+	}
+
+	listSize = other.listSize;
+
+}
+
+PeopleList& PeopleList::operator=(const PeopleList& other) {
+	PeopleList copy(other);
+	swap(copy);
+	return *this;
+}
+
+
+
 
 PeopleList::~PeopleList() {
     Node *p = head->next;
@@ -126,7 +161,126 @@ bool PeopleList::get(int i, std::string& firstName, std::string& lastName, InfoT
     
 }
 
+bool PeopleList::change(const std::string& firstName, const std::string& lastName, const InfoType& value) {
+	Node *p = head->next;
+	for (; p != head; p = p->next) {
+		if (p->m_firstName == firstName && p->m_lastName == lastName) {
+			p->m_value = value;
+			return true;
+		}
+	}
+	return false;
+}
 
+
+bool PeopleList::addOrChange(const std::string& firstName, const std::string& lastName, const InfoType& value) {
+	bool lastNameSame = false;
+	Node *p = head->next;
+	for (; p != head; p = p->next) {
+		if (p->m_firstName == firstName && p->m_lastName == lastName) {
+			p->m_value = value;
+			return true;
+		}
+		else if (p->m_lastName == lastName) {
+			lastNameSame = true;
+			break;
+		}
+		else
+			;
+	}
+	Node *newNode = new Node;
+	newNode->m_firstName = firstName;
+	newNode->m_lastName = lastName;
+	newNode->m_value = value;
+	if (lastNameSame == true) {
+		p = PosOfFirstName(firstName);
+		newNode->next = p->next;
+		newNode->previous = p;
+		p->next->previous = newNode;
+		p->next = newNode;
+		listSize++;
+		return true;
+	}
+	else {
+		p = PosOfLastName(lastName);
+		newNode->next = p->next;
+		newNode->previous = p;
+		p->next->previous = newNode;
+		p->next = newNode;
+		listSize++;
+		return true;
+	}
+
+}
+
+bool PeopleList::remove(const std::string& firstName, const std::string& lastName) {
+	Node *p = head->next;
+	for (; p != head; p = p->next) {
+		if (p->m_firstName == firstName && p->m_lastName == lastName) {
+			p->previous->next = p->next;
+			p->next->previous = p->previous;
+			delete p;
+			listSize--;
+			return true;
+		}
+	}
+	return false;
+}
+
+
+bool PeopleList::contains(const std::string& firstName, const std::string& lastName) const {
+	Node *p = head->next;
+	for (; p != head; p = p->next) {
+		if (p->m_firstName == firstName && p->m_lastName == lastName)
+			return true;
+	}
+	return false;
+}
+
+
+bool PeopleList::lookup(const std::string& firstName, const std::string& lastName, InfoType& value) const {
+	Node *p = head->next;
+	for (; p != head; p = p->next) {
+		if (p->m_firstName == firstName && p->m_lastName == lastName) {
+			value = p->m_value;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool PeopleList::empty() const {
+	if (head->next == head && head->previous == head)
+		return true;
+	else
+		return false;
+}
+
+
+
+void PeopleList::swap(PeopleList& other) {
+	Node *temp = new Node;
+	temp->m_firstName = "";
+	temp->m_lastName = "";
+	
+	temp->next = head->next;
+	head->next->previous = temp;
+	temp->previous = head->previous;
+	head->previous->next = temp;
+
+	head->next = other.head->next;
+	other.head->next->previous = head;
+	head->previous = other.head->previous;
+	other.head->previous->next = head;
+
+	other.head->next = temp->next;
+	temp->next->previous = other.head;
+	other.head->previous = temp->previous;
+	temp->previous->next = other.head;
+
+
+	std::swap(listSize, other.listSize);
+}
 
 
 

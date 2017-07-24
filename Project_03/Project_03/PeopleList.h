@@ -36,7 +36,11 @@ private:
 public:
     PeopleList();          // Create an empty In (i.e., one with no InfoType values)
     
-    ~PeopleList();         //When a PeopleList is destroyed, all dynamic memory must be deallocated.
+	PeopleList(const PeopleList &other);    // Copy constructor
+
+	PeopleList& operator=(const PeopleList& other);
+
+    ~PeopleList();         // When a PeopleList is destroyed, all dynamic memory must be deallocated.
     
     bool empty() const;    // Return true if the list is empty, otherwise false.
     
