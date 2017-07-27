@@ -38,7 +38,7 @@ using namespace std;
 }*/
 
 
-/*int main() {
+int main() {
 	PeopleList p1;
 	PeopleList result;
 
@@ -49,7 +49,7 @@ using namespace std;
 	p1.add("Marie", "Schrader", 37);
 	p1.add("Jane", "Margolis", 27);
 
-	search("*", "*", p1, result);
+	psearch("*", "*", p1, result);
 
 	for (int n = 0; n < result.size(); n++)
 	{
@@ -61,10 +61,10 @@ using namespace std;
 	}
 
 
-}*/
+}
 
 
-#include "PeopleList.h"
+/*#include "PeopleList.h"
 #include <string>
 #include <iostream>
 #include <cassert>
@@ -88,7 +88,7 @@ int main()
 {
     test();
     cout << "Passed all tests" << endl;
-}
+}*/
 
 
 

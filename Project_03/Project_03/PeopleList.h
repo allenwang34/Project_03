@@ -95,7 +95,7 @@ public:
 bool combine(const PeopleList& m1, const PeopleList& m2, PeopleList& result);
 
 
-void search(const std::string& fsearch, const std::string& lsearch,
+void psearch(const std::string& fsearch, const std::string& lsearch,
 	const PeopleList& p1, PeopleList& result);
 
 

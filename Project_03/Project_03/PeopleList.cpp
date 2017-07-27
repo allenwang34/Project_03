@@ -325,7 +325,7 @@ bool combine(const PeopleList& m1, const PeopleList& m2, PeopleList& result) {
 	return isEqualValue;
 }
 
-void search(const std::string& fsearch, const std::string& lsearch, const PeopleList& p1, PeopleList& result) {
+void psearch(const std::string& fsearch, const std::string& lsearch, const PeopleList& p1, PeopleList& result) {
 	if (fsearch == "*" && lsearch == "*") {
 		for (int i = 0; i < p1.size(); i++) {
 			std::string firstName;
