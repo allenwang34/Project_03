@@ -66,7 +66,7 @@ PeopleList::~PeopleList() {
         p = p->next;
         delete n;
     }
-    delete head;
+	delete head;
     
 }
 
@@ -74,14 +74,15 @@ PeopleList::~PeopleList() {
 PeopleList::Node* PeopleList::PosOfFirstName(const std::string &firstname) { //return the place ready to insert. Need to insert the next node.
     Node *p = head;
     for (p=p->next; p!=head; p=p->next) { //since the head node is a dummy node, p equals the next node and is not equal to head.
-        if (p->m_firstName < firstname && p->next->m_firstName > firstname) {
+        if (p->m_firstName < firstname && p->next->m_firstName > firstname) { //in case the input lastname fall in between the two nodes
             return p;
         }
     }
-    if (firstname > p->next->m_firstName)
-        return p->previous;
+	//now p points back to head. Two conditions: p is the largest or p is the smallest
+    if (firstname > p->next->m_firstName) // if p larger than the first node, it must be largest condition
+        return p->previous; // return the position of last node, in the add function, I will add the node next to the last node.
     else
-        return p;
+        return p; // else, p must be the smallest condition. return the position of head, I will add the node next to head.
 }
 
 

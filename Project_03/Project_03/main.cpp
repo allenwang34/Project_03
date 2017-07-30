@@ -18,6 +18,14 @@ using namespace std;
 
 
 
+int main() {
+	PeopleList m;
+	// For an empty list:
+	assert(m.size() == 0);      // test size
+	assert(m.empty());          // test empty
+	assert(!m.remove("Ricky", "Ricardo"));  // nothing to erase 
+}
+
 
 /*int main() {
 	PeopleList result;
@@ -48,7 +56,7 @@ using namespace std;
 
 
 
-int main() {
+/*int main() {
     PeopleList result;
     PeopleList m1;
     PeopleList m2;
@@ -70,7 +78,7 @@ int main() {
         result.get(n, f, l, v);
         cout << f << " " << l << " " << v << endl;
     }
-}
+}*/
 
 
 
