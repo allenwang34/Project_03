@@ -6,18 +6,26 @@
 //  Copyright © 2017 Yiyang Wang. All rights reserved.
 //
 
+
+
 #include <iostream>
 #include <string>
 #include <assert.h>
 #include "PeopleList.h"
 using namespace std;
 
+
+
+
+
+
 /*int main() {
 	PeopleList result;
 	PeopleList m1;
 	PeopleList m2;
 
-	result.add("Allen", "Amy", 1000);
+	//result.add("Allen", "Amy", 1000);
+    result.add("Ethel", "Mertz", 123);
 	m1.add("Ethel", "Mertz", 456);
 	m1.add("Fred", "Mertz", 123);
 	m1.add("Lucy", "Ricardo", 789);
@@ -38,7 +46,55 @@ using namespace std;
 }*/
 
 
+
+
 int main() {
+    PeopleList result;
+    PeopleList m1;
+    PeopleList m2;
+    
+    //result.add("Allen", "Amy", 1000);
+    result.add("Ethel", "Mertz", 123);
+    m1.add("Ethel", "Mertz", 456);
+    m1.add("Fred", "Mertz", 123);
+    m1.add("Lucy", "Ricardo", 789);
+    m1.add("Lucy", "Ricardo", 654);
+    m1.add("Ricky", "Ricardo", 321);
+    
+    psearch("Ricky", "Ricardo", m1, result);
+    for (int n = 0; n < result.size(); n++)
+    {
+        string f;
+        string l;
+        int v;
+        result.get(n, f, l, v);
+        cout << f << " " << l << " " << v << endl;
+    }
+}
+
+
+
+
+
+/*int main() {
+    
+    PeopleList gpas;
+    
+    gpas.add("Gus", "Fring", 3.756);
+    assert(!gpas.contains("",""));
+    gpas.add("Jane", "Margolis", 3.538);
+    gpas.add("", "", 4.000);
+    gpas.add("Jesse", "Pinkman", 2.256);
+    assert(gpas.contains("", ""));
+    gpas.remove("Gus", "Fring");
+    assert(gpas.size() == 3  &&  gpas.contains("Jesse", "Pinkman")  &&
+           gpas.contains("Jane", "Margolis")  && gpas.contains("", ""));
+    cout << "Test Passed!" << endl;
+    
+}*/
+
+
+/*int main() {
 	PeopleList p1;
 	PeopleList result;
 
@@ -61,7 +117,7 @@ int main() {
 	}
 
 
-}
+}*/
 
 
 /*#include "PeopleList.h"

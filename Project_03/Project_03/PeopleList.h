@@ -27,8 +27,8 @@ private:
     Node *head;
     int listSize;
     
-    Node *PosOfLastName(const std::string &lastName);
-    Node *PosOfFirstName(const std::string &firstName);
+    Node *PosOfLastName(const std::string &lastName); //returns a pointer pointing to the position to insert new node according to last name sort
+    Node *PosOfFirstName(const std::string &firstName); //returns a pointer pointing to the position to inset new node according to first name
     
     
     
